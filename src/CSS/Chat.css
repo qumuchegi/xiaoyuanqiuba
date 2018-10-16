@@ -1,0 +1,72 @@
+body{
+    height: 100%;
+    background-color: honeydew
+}
+#goback{
+    left:0;
+    margin-left: 0;
+    margin-right:0;
+    padding: 1% 0 1% 0;
+    color:white;
+    background-color:rgba(220,20,60, 0.793);
+}
+h3 #span{ 
+    width:100%;
+    margin: 0;
+    top:0;
+    padding: 1% 38% 1% 36%;
+    color:white;
+    background-color:rgba(220,20,60, 0.793);
+}
+#inputSend{
+    background-color: brown;
+    padding: 0;
+    margin: 0;  
+    width:100%;
+    position: fixed; bottom:0;right: 0;left: 0
+}
+#inputSend input{
+    width:79%;
+    margin: 0;
+    color: black;
+    background-color: darkgrey;
+    height:16%
+ 
+}
+#inputSend button{
+    width:21%;
+    margin: 0;
+    color:white;
+    background-color: rgb(220,20,60,0.7);
+    border-radius: 3px;
+   
+}
+#chatList{
+    margin-left:5%;
+    top:7%;
+    text-align: right;
+    margin-right:5%;
+    list-style-type:none;
+    background-color: azure;
+    font-size: 120%;
+    margin-bottom: 17%
+}
+#chatList span{
+    margin: 0;
+    padding:0 2% 0 2%;
+    margin-left:5%;
+    font-size: 120%;
+    color: rgb(147, 20, 220);
+    background-color: rgba(210, 236, 149, 0.767)
+}
+ 
+#chatList-from{
+    text-align: left
+}
+#chatList-from span{
+    margin-left: 0;
+    margin-right:5%
+}
+.diveder{
+    margin: 0
+}

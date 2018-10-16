@@ -1,0 +1,29 @@
+#left{
+    float: left;
+    width: 60%;
+    margin: 0%;
+}
+#right{
+    float: right;
+    width:40%;
+    margin: 0%;
+    background-color: azure
+}
+#Daka-title{
+    text-align: center;
+    background-color: aquamarine;
+    border-radius: 2px;
+    margin: 1% 1% 1% 5%;
+}
+#time-count{
+    margin-left:5%;
+    margin-top: 4%;
+    
+}
+.time-span{
+    color: rgb(194, 96, 30)
+}
+#remind-last{
+    margin-left:5%;
+    margin-top: 0;
+}

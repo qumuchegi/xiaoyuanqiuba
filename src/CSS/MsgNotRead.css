@@ -1,0 +1,33 @@
+h3{
+    text-align: center;
+    color: rgba(220,20,60,0.7);
+}
+.eachFrom{
+    background-color: rgba(208, 216, 99, 0.747)
+}
+
+#notReadchatinfofrom{
+    padding: 1%;
+    font-size: 130%;
+    color:white;
+    margin-left:0%;
+    background-color: rgba(207, 61, 146, 0.644)
+}
+.divider{
+    margin: 2% 0% 5% 3%;
+    background-color: black
+
+}
+
+.msgli{
+    margin-top: 2% ;
+    margin-left: 3%
+}
+.huifu{
+    margin-left: 53%;
+    color: rgb(240, 17, 62);
+    right:4%;
+    margin-top:3%;
+    background-color: rgba(206, 204, 174, 0.76);
+    padding:1% 2% 1% 2%;
+}

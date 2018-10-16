@@ -1,0 +1,13 @@
+h2{
+    display: inline;
+    color:rgba(220,20,60,0.5);
+    margin-right: 6%;
+}
+ 
+#sendmsgButton{
+    margin-left:20%
+}
+.dongtaicard{
+    background-color: rgba(219, 191, 180, 0.63);
+    box-shadow: 1px 2px 2px 2px #eb9696;
+}

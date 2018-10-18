@@ -12,6 +12,7 @@ app.use(bodyParser.json());
 var userInfo=model.getModel('usermodel');
 var chatInfo = model.getModel('chatmodel');
 var dongtaiInfo=model.getModel('dongtaimodel');
+var rateInfo=model.getModel('ratemodel');
 /////socket消息
 const server = require('http').Server(app);
 const io = require('socket.io')(server);
@@ -61,12 +62,69 @@ Router.get('/getdongtaiinfo',function(req,res){
         return res.json(dat);
     })
 })
+Router.get('/getrateinfo',function(req,res){
+    rateInfo.find({},function(err,dat){
+        return res.json(dat)
+    })
+})
 Router.post('/getusers',function(req,res){
     userInfo.find({},function(err,dat){
          
         return res.json({code:0,data:dat});
 }) 
 });
+Router.post('/saverate',function(req,res){
+    const{evaFrom,
+    evaTo,
+    //评价数据：
+    pangdaiV,
+    chuanqiuV,
+    fangshouV,
+    zuzhiV,
+    tingqiuV,
+    zhanweiV,
+    shemenV,
+    suduV,
+    liliangV,
+    menqianxiujueV,
+    wuqiuV,
+}=req.body;
+rateInfo.findOne({evaFrom:evaFrom,evaTo:evaTo},function(err,dat){
+    if(!dat){
+        new rateInfo({
+            evaFrom,
+            evaTo,
+            //评价数据：
+            pangdaiV,
+            chuanqiuV,
+            fangshouV,
+            zuzhiV,
+            tingqiuV,
+            zhanweiV,
+            shemenV,
+            suduV,
+            liliangV,
+            menqianxiujueV,
+            wuqiuV
+        }).save();
+        return res.json({code:0,data:'已经保存评价数据！'})
+    }
+    if(dat){
+        return res.json({code:1,data:'你已经对他评价过了'})
+    }
+})
+})
+
+Router.post('/getmyrate',function(req,res){
+    const {user}=req.body;
+    rateInfo.find({evaTo:user},function(err,data){
+        let datt=[];
+        for(let v of data){
+            datt.push(v)
+        }
+        return res.json({code:0,data:datt});
+    })
+})
 Router.post('/savedongtai',function(req,res){
     const {dongtaiOwner,dongtaiContent}=req.body;
 
@@ -215,6 +273,7 @@ Router.post('/userregister',function(req,res){
 //chatInfo.find({},function(err,doc){doc.map(v=>v.remove())});
 //userInfo.find({},function(err,doc){doc.map(v=>v.remove())});
 //dongtaiInfo.find({},function(err,doc){doc.map(v=>v.remove())});
+//rateInfo.find({},function(err,doc){doc.map(v=>v.remove())});;
 app.use('/user',Router);
 //app.listen(9093,console.log('服务器开启'));
 server.listen(9093,console.log('server'))

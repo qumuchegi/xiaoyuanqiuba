@@ -1,0 +1,21 @@
+#eva-form{
+    margin-top: 10% 
+}
+#evato{
+    text-align: center;
+    color: rgba(221, 31, 31, 0.753);
+    font-size: 140%
+}
+.stars{
+    margin-left: 10%
+}
+.ratename{
+    margin-left: 2%;
+    padding: 1% 2% 1% 2%;
+    border-radius: 2px;
+    background-color: aquamarine
+}
+#submit{
+    margin-left:36%;
+    margin-top: 10%;
+}

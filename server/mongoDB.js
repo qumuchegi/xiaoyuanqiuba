@@ -1,6 +1,6 @@
 const mongoose=require('mongoose');
 const DBURL='mongodb://localhost:27017/xiaoyuanqiuba';
-mongoose.connect(DBURL,err=>console.log(err));
+mongoose.connect(DBURL,{useNewUrlParser:true},err=>console.log(err));
 //用户信息的model
 mongoose.model('usermodel',
                 new mongoose.Schema({
@@ -30,7 +30,24 @@ mongoose.model('dongtaimodel',
                     dongtaiStarsNum:Number
                 })
 )
-
+mongoose.model('ratemodel',
+                new mongoose.Schema({
+                    evaFrom:String,
+                    evaTo:String,
+                    //评价数据：
+                    pangdaiV:Number,
+                    chuanqiuV:Number,
+                    fangshouV:Number,
+                    zuzhiV:Number,
+                    tingqiuV:Number,
+                    zhanweiV:Number,
+                    shemenV:Number,
+                    suduV:Number,
+                    liliangV:Number,
+                    menqianxiujueV:Number,
+                    wuqiuV:Number
+                })
+)
 module.exports={
     getModel:function(modelname){
         return mongoose.model(modelname)

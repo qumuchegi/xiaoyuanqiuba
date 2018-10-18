@@ -124,6 +124,10 @@ class FriendsLists extends Component{
         })
         this.setState({isPublishDongtaiShow:!this.state.isPublishDongtaiShow});
     }
+    evaluate(evaTo,evaFrom){
+        this.props.history.push(`/eva/${evaTo}?${evaFrom}`)
+        console.log('评价')
+    }
     render(){
         const TabPane = Tabs.TabPane;
         var t=0;
@@ -142,9 +146,18 @@ class FriendsLists extends Component{
                 <li>
                 <div style={{width:'20%'}}>{item}</div>
                 <Button id='sendmsgButton' 
+                type='primary'
                 onClick={()=>this.props.history.push(`/chat/${item}?${this.props.user}`)}>
                 <Icon type="message" theme="twoTone" />
                 给他发消息
+                </Button>
+                <Button id='evaluate'
+                onClick={()=>{
+                    this.evaluate(item,this.props.user)
+                }}
+                type='primary'
+                >
+                    评价他的能力
                 </Button>
                 </li>
                 <Divider></Divider>

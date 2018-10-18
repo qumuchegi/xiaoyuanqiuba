@@ -1,11 +1,11 @@
 #left{
     float: left;
-    width: 60%;
+    width: 70%;
     margin: 0%;
 }
 #right{
     float: right;
-    width:40%;
+    width:30%;
     margin: 0%;
     background-color: azure
 }
@@ -26,4 +26,15 @@
 #remind-last{
     margin-left:5%;
     margin-top: 0;
+}
+#evaFrom{
+    background-color: rgb(231, 61, 61);
+    text-align: center;
+    border-radius: 3px;
+    margin: 2%;
+    color: cyan
+}
+#myability-chart{
+    background-color: bisque;
+    margin: 1%
 }

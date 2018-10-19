@@ -146,7 +146,7 @@ class FriendsLists extends Component{
                 <li>
                 <div style={{width:'20%'}}>{item}</div>
                 <Button id='sendmsgButton' 
-                type='primary'
+                type='default'
                 onClick={()=>this.props.history.push(`/chat/${item}?${this.props.user}`)}>
                 <Icon type="message" theme="twoTone" />
                 给他发消息
@@ -155,8 +155,9 @@ class FriendsLists extends Component{
                 onClick={()=>{
                     this.evaluate(item,this.props.user)
                 }}
-                type='primary'
+                type='default'
                 >
+                
                     评价他的能力
                 </Button>
                 </li>
@@ -193,7 +194,7 @@ class FriendsLists extends Component{
                             f===item.userName
                             )
                             ?
-                            <div style={{textAlign:'center',fontWeight:'bolder',color:'rgba(45,223,32,0.6)',borderRadius:'3px',padding:'2% 3% 2% 3%',margin:'3% 4% 3% 6%'}}>
+                            <div style={{textAlign:'center',fontWeight:'bolder',color:'rgba(145,23,32,0.6)',borderRadius:'3px',padding:'2% 3% 2% 3%',margin:'3% 4% 3% 6%'}}>
                             <Icon type="check-circle" theme="outlined" />
                             已经添加为好友
                             </div>

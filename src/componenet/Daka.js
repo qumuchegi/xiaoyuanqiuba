@@ -1,7 +1,7 @@
 import React,{Component} from 'react';
 import axios from 'axios';
 import '../CSS/Daka.css';
-import {Icon} from 'antd';
+import {Icon,Button,Drawer,message} from 'antd';
 import echarts from 'echarts';
 
 class Daka extends Component {
@@ -15,7 +15,9 @@ class Daka extends Component {
             hour:'',
             min:'', 
             last_day:'',    
-            rateData:[]
+            rateData:[],
+            isdrawers:false,
+            friends:[]
         }
     };
     getdate(){
@@ -61,7 +63,7 @@ class Daka extends Component {
 
             let num_rate=this.state.rateData.length;
 
-        this.state.rateData.map(rate=>{
+        this.state.rateData.forEach(rate=>{
             pangdaiV+=rate.pangdaiV;
             chuanqiuV+=rate.chuanqiuV;
             fangshouV+=rate.fangshouV;
@@ -73,6 +75,7 @@ class Daka extends Component {
             liliangV+=rate.liliangV;
             menqianxiujueV+=rate.menqianxiujueV;
             wuqiuV+=rate.wuqiuV;
+            
         });
         console.log('平均值：', pangdaiV/num_rate)
         var myChart = echarts.init(document.getElementById('myability-chart'));
@@ -127,6 +130,21 @@ class Daka extends Component {
         });
         }
         );
+        axios.post('http://localhost:9093/user/getmyfriends',{userName:user})//获取当前用户的好友
+            .then(res=>{
+                if(res.status===200&&res.data.code===0){
+                    this.saveFriends(res.data.data)
+                    console.log(res.data.data)
+                    console.log('已经得到我的好友');
+                    
+                }
+                
+            })
+    }
+    saveFriends(data){
+        this.setState({friends:data});
+        console.log('state好友',this.state.friends)
+        this.setState({isGetFriends:true})
     }
     componentWillUnmount(){
         clearInterval(this.getdate)
@@ -135,7 +153,7 @@ class Daka extends Component {
         return(
             <div>
                 <div id='left'>
-                 <h4 id='Daka-title'>你的个人足球数据可视化</h4> 
+                 <h4 id='Daka-title'>将好友的评价数据可视化</h4> 
                  <p id='time-count'>
                      <Icon type="dashboard" theme="outlined" style={{color:'red'}}/>
                      {`${' '}`}
@@ -171,6 +189,54 @@ class Daka extends Component {
                 <div>他们是:
                 {this.state.rateData.map(rate=>
                     <li key={rate.evaFrom} id='evaFrom'>{rate.evaFrom}</li>)}
+                </div>
+                 <span>评价的好友人数越多，你的数据更可靠</span>
+                 <div>
+                     <Button type='danger'
+                     onClick={
+                         ()=>this.setState({isdrawershow:true})
+                     }>
+                     邀请好友评价
+                     </Button>
+                     <Drawer
+                       title="我的好友列表"
+                       placement="left"
+                       closable={false}
+                       onClose={()=>this.setState({isdrawershow:false})}
+                       visible={this.state.isdrawershow}
+                     >
+                        {this.state.friends.filter(
+                            f=>
+                            !this.state.rateData.some(rate=>
+                                rate.evaFrom===f
+                                )
+                        ).map(friend=>
+                        <p key={friend}
+                        className='friendli'
+                        onClick={
+                            ()=>{
+                             message.warning('已邀请')
+                            }
+                        }
+                        >邀请{friend}
+                        </p>
+                        )
+                        }
+                        {
+                            this.state.friends.filter(
+                                f=>
+                                !this.state.rateData.some(rate=>
+                                    rate.evaFrom===f
+                                    )
+                            ).length===0?
+                        <p>
+                            所有好友均做过评价
+                            <p>如果想获取更多人的评价，请加其他好友</p>
+                        </p>
+
+                        :null
+                        }
+                    </Drawer>         
                 </div>
                 </div>
             </div>

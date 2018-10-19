@@ -1,7 +1,6 @@
 import React, { Component } from 'react';
 import axios from 'axios';
-import {withRouter} from 'react-router-dom';
-import { Icon,message,Button,Rate } from 'antd';
+import { Icon,message,Button,Rate ,Divider} from 'antd';
 import '../CSS/evalution.css';
 
 class evalution extends Component {
@@ -38,6 +37,7 @@ class evalution extends Component {
         .then(res=>{
             if(res.status===200&&res.data.code===0) {
                 console.log(res.data.data);
+                message.warning('评价成功！')
             }
             if(res.status===200&&res.data.code===1){
                 console.log('已经评价过了',res.data.data);
@@ -52,7 +52,7 @@ class evalution extends Component {
     render(){
         return(
             <div>
-                <span  id='goback' 
+                <span  id='goback' className='goback'
                  onClick={()=>this.props.history.goBack()}>
                  <Icon type="left" theme="outlined"/>
                  返回
@@ -69,7 +69,7 @@ class evalution extends Component {
                         {this.state.pangdaiV && <span className="ant-rate-text">{this.state.pangdaiV} stars</span>}
                     </span>
                     </div>
-
+                   <Divider/>
                     <div>
                     <span className='ratename'>
                     <Icon type="tags" theme="outlined" />
@@ -79,7 +79,7 @@ class evalution extends Component {
                         {this.state.chuanqiuV && <span className="ant-rate-text">{this.state.chuanqiuV} stars</span>}
                     </span>
                     </div>
-                    
+                    <Divider/>
                     <div>
                     <span className='ratename'>
                     <Icon type="tags" theme="outlined" />
@@ -89,7 +89,7 @@ class evalution extends Component {
                         {this.state.fangshouV && <span className="ant-rate-text">{this.state.fangshouV} stars</span>}
                     </span>
                     </div>
-                    
+                    <Divider/>
                     <div>
                     <span className='ratename'>
                     <Icon type="tags" theme="outlined" />
@@ -99,7 +99,7 @@ class evalution extends Component {
                         {this.state.zuzhiV && <span className="ant-rate-text">{this.state.zuzhiV} stars</span>}
                     </span>
                     </div>
-                    
+                    <Divider/>
                     <div>
                     <span className='ratename'>
                     <Icon type="tags" theme="outlined" />
@@ -109,7 +109,7 @@ class evalution extends Component {
                         {this.state.tingqiuV && <span className="ant-rate-text">{this.state.tingqiuV} stars</span>}
                     </span>
                     </div>
-                     
+                    <Divider/>
                     <div>
                     <span className='ratename'>
                     <Icon type="tags" theme="outlined" />
@@ -119,7 +119,7 @@ class evalution extends Component {
                         {this.state.zhanweiV && <span className="ant-rate-text">{this.state.zhanweiV} stars</span>}
                     </span>
                     </div>
-
+                    <Divider/>
                     <div>
                     <span className='ratename'>
                     <Icon type="tags" theme="outlined" />
@@ -129,7 +129,7 @@ class evalution extends Component {
                         {this.state.shemenV && <span className="ant-rate-text">{this.state.shemenV} stars</span>}
                     </span>
                     </div>
-                     
+                    <Divider/> 
                     <div>
                     <span className='ratename'>
                     <Icon type="tags" theme="outlined" />
@@ -139,7 +139,7 @@ class evalution extends Component {
                         {this.state.suduV && <span className="ant-rate-text">{this.state.suduV} stars</span>}
                     </span>
                     </div>
-
+                    <Divider/>
                     <div>
                     <span className='ratename'>
                     <Icon type="tags" theme="outlined" />
@@ -149,7 +149,7 @@ class evalution extends Component {
                         {this.state.liliangV && <span className="ant-rate-text">{this.state.liliangV} stars</span>}
                     </span>
                     </div>
-                     
+                    <Divider/>
                     <div>
                     <span className='ratename'>
                     <Icon type="tags" theme="outlined" />
@@ -159,7 +159,7 @@ class evalution extends Component {
                         {this.state.menqianxiujueV && <span className="ant-rate-text">{this.state.menqianxiujueV} stars</span>}
                     </span>
                     </div>
-
+                    <Divider/>
                     <div>
                     <span className='ratename'>
                     <Icon type="tags" theme="outlined" />
@@ -169,7 +169,7 @@ class evalution extends Component {
                         {this.state.wuqiuV && <span className="ant-rate-text">{this.state.wuqiuV} stars</span>}
                     </span>
                     </div>
-                     
+                    <Divider/>
                 </div>
 
                 <Button

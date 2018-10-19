@@ -55,7 +55,7 @@ class Usercenter extends Component{
             <TabPane tab="我的球队" key="3">
              Content of Tab Pane 3
             </TabPane>
-            <TabPane tab="踢球打卡" key="4">
+            <TabPane tab="好友评价" key="4">
               <Daka user={user.userName}/>
             </TabPane>
             </Tabs>

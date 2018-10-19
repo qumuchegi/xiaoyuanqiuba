@@ -7,7 +7,7 @@
     float: right;
     width:30%;
     margin: 0%;
-    background-color: azure
+    background-color: rgba(103, 241, 200, 0.747)
 }
 #Daka-title{
     text-align: center;
@@ -28,13 +28,20 @@
     margin-top: 0;
 }
 #evaFrom{
-    background-color: rgb(231, 61, 61);
-    text-align: center;
+    background-color: rgba(120, 204, 148, 0.856);
+    text-align:center;
     border-radius: 3px;
     margin: 2%;
-    color: cyan
+    color: rgb(45, 57, 226)
 }
 #myability-chart{
-    background-color: bisque;
+     
     margin: 1%
+}
+.friendli{
+    text-align: center;
+    background-color: darkseagreen;
+    font-size: 120%;
+    border-radius: 4px;
+    padding: 2% 3% 2% 3%;
 }

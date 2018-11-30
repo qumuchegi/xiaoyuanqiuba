@@ -10,17 +10,17 @@ class evalution extends Component {
             evaFrom:'',
             evaTo:'',
             //评价数据：
-            pangdaiV:'',
-            chuanqiuV:'',
-            fangshouV:'',
-            zuzhiV:'',
-            tingqiuV:'',
-            zhanweiV:'',
-            shemenV:'',
-            suduV:'',
-            liliangV:'',
-            menqianxiujueV:'',
-            wuqiuV:'',
+            pangdaiV:0,
+            chuanqiuV:0,
+            fangshouV:0,
+            zuzhiV:0,
+            tingqiuV:0,
+            zhanweiV:0,
+            shemenV:0,
+            suduV:0,
+            liliangV:0,
+            menqianxiujueV:0,
+            wuqiuV:0,
             haseva:false
         }
     }
@@ -41,6 +41,7 @@ class evalution extends Component {
             }
             if(res.status===200&&res.data.code===1){
                 console.log('已经评价过了',res.data.data);
+                message.warning('你之前已经评价过了！');
                 this.setState({haseva:true})
             };
             if(this.state.haseva){

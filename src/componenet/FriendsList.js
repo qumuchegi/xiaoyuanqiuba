@@ -144,7 +144,7 @@ class FriendsLists extends Component{
                 <div  key={item}>
                 <Divider></Divider>
                 <li>
-                <div style={{width:'20%'}}>{item}</div>
+                <div style={{width:'20%'}}><Icon type="solution" theme="outlined" />{item}</div>
                 <Button id='sendmsgButton' 
                 type='default'
                 onClick={()=>this.props.history.push(`/chat/${item}?${this.props.user}`)}>

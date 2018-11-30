@@ -13,11 +13,14 @@ var userInfo=model.getModel('usermodel');
 var chatInfo = model.getModel('chatmodel');
 var dongtaiInfo=model.getModel('dongtaimodel');
 var rateInfo=model.getModel('ratemodel');
+var inviteInfo=model.getModel('invitemodel');
+var trainInfo=model.getModel('trainmodel');
+var teamInfo=model.getModel('teammodel');
 /////socket消息
 const server = require('http').Server(app);
 const io = require('socket.io')(server);
+
 io.on('connection',function(socket){
-  
     socket.on('sendmsg',function(data){
         const {from,to,msg}=data;   
         chatInfo.findOne({chatFrom:from,chatTo:to},function(err,dat){
@@ -34,11 +37,29 @@ io.on('connection',function(socket){
             }
         });      
         io.emit('recmsg',{from,to,msg})
+    });
+socket.on('sendInvite',function(data){
+    const {inviteFrom,inviteTo}=data;
+    console.log('邀请',data);
+    inviteInfo.findOne({inviteFrom},function(err,data){
+        if(!data){
+            
+            new inviteInfo({
+                inviteFrom:inviteFrom,
+                inviteTo:inviteTo
+            }).save();
+            console.log('123')
+            io.emit('recInvite',{inviteFrom,inviteTo})
+           
+        }
     })
+    
+})
 })
  
 //允许跨域
 app.all('*',function(req,res,next) {
+
     res.header("Access-Control-Allow-Origin","*");
     res.header("Access-Control-Allow-Headers","Origin, X-Requested-With, Content-Type, Content-Length,Authorization, Accept,yourHeaderFeild");
     res.header("Access-Control-Allow-Methods","PUT,POST,GET,DELETE,OPTIONS");
@@ -67,12 +88,82 @@ Router.get('/getrateinfo',function(req,res){
         return res.json(dat)
     })
 })
+Router.get('/getinvite',function(req,res){
+    inviteInfo.find({},function(err,dat){
+        return res.json(dat)
+    })
+})
+Router.get('/gettrain',function(req,res){
+    trainInfo.find({},function(err,dat){
+        return res.json(dat)
+    })
+})
+Router.get('./getteam',function(req,res){
+    trainInfo.find({},function(err,dat){
+        return res.json(dat)
+    })
+}
+)
+Router.post('/savemytrain',function(req,res){
+    const {user,trainTime,trainDay}=req.body;
+    
+    trainInfo.findOne({user},function(err,dat){
+        if(!dat){
+            let trainTime_arr=[];
+                trainTime_arr.push(trainTime);
+            let trainDay_arr=[];
+                trainDay_arr.push(trainDay);
+            new trainInfo({
+                user,
+                trainTime:trainTime_arr,
+                trainDay:trainDay_arr
+            }).save();
+            console.log('已经保存训练数据：', {user,trainTime,trainDay})
+            return res.json({code:0,data:'已经保存第一次训练数据'})
+        }else{
+            dat.trainTime.push(trainTime);
+            dat.trainDay.push(trainDay);
+            dat.save();
+            return res.json({code:0,data:'已经保存训练数据'})
+        }
+    })
+})
+Router.post('/getmytraininfo',function(req,res){
+    const {user}=req.body;
+    trainInfo.findOne({user},function(err,dat){
+        if(dat){
+            return res.json({code:0,data:dat})
+        }else{
+            return res.json({code:1,data:'没有你的训练数据'})
+        }
+    })
+})
 Router.post('/getusers',function(req,res){
     userInfo.find({},function(err,dat){
          
         return res.json({code:0,data:dat});
 }) 
-});
+})
+Router.post('/getmyinvite',function(req,res){
+    const {inviteTo}=req.body;
+    inviteInfo.find({inviteTo:inviteTo},function(err,data){
+        if(data){
+
+            console.log('邀请',data);
+            return res.json({code:0,data:data})
+        }
+    })
+})
+Router.post('/removeeva',function(req,res){
+    const {evaTo}=req.body;
+    inviteInfo.findOne({inviteFrom:evaTo},function(err,data){
+        if(data){
+            data.remove();
+            console.log('已经删除邀请！',data)
+            return res.json({code:0,data:'已经删除邀请！'})
+        }
+    })
+})
 Router.post('/saverate',function(req,res){
     const{evaFrom,
     evaTo,
@@ -274,6 +365,8 @@ Router.post('/userregister',function(req,res){
 //userInfo.find({},function(err,doc){doc.map(v=>v.remove())});
 //dongtaiInfo.find({},function(err,doc){doc.map(v=>v.remove())});
 //rateInfo.find({},function(err,doc){doc.map(v=>v.remove())});;
+//inviteInfo.find({},function(err,doc){doc.map(v=>v.remove())});;
+trainInfo.find({},function(err,doc){doc.map(v=>v.remove())});;
 app.use('/user',Router);
 //app.listen(9093,console.log('服务器开启'));
 server.listen(9093,console.log('server'))

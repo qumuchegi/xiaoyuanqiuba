@@ -4,6 +4,7 @@ import FriendsList from './FriendsList';
 import '../CSS/Usercenter.css';
 import { Tabs} from 'antd';
 import Daka from './Daka';
+import Myteam from './Myteam';
 import MsgNotRead from './MsgNotRead';
 const TabPane = Tabs.TabPane;
 //user,logout
@@ -53,9 +54,9 @@ class Usercenter extends Component{
              <MsgNotRead user={user.userName}/>
             </TabPane>
             <TabPane tab="我的球队" key="3">
-             Content of Tab Pane 3
+              <Myteam user={user.userName}/>
             </TabPane>
-            <TabPane tab="好友评价" key="4">
+            <TabPane tab="个人数据" key="4">
               <Daka user={user.userName}/>
             </TabPane>
             </Tabs>

@@ -9,14 +9,14 @@ class Dashboard extends Component {
     render(){
         const TabPane = Tabs.TabPane;
         return(
-            <Tabs defaultActiveKey="3" className='topBar'>
-             <TabPane tab={<span><Icon type="compass" theme="outlined" />五大联赛</span>} key="1">
+            <Tabs defaultActiveKey="3" >
+             <TabPane tab={<span className='topBar'><Icon type="compass" theme="outlined" />五大联赛</span>} key="1">
               <Wudaliansai/>
              </TabPane>
-             <TabPane tab={<span><Icon type="bank" theme="outlined" />校园足球</span>} key="2">
+             <TabPane tab={<span className='topBar'><Icon type="bank" theme="outlined" />校园足球</span>} key="2">
               Tab 2
              </TabPane>
-             <TabPane tab={<span><Icon type="user" theme="outlined" />我的</span>} key="3">
+             <TabPane tab={<span className='topBar'><Icon type="user" theme="outlined" />我的</span>} key="3">
                <Login/>
              </TabPane>
             </Tabs>
